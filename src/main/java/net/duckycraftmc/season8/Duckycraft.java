@@ -1,7 +1,6 @@
 package net.duckycraftmc.season8;
 
-import net.duckycraftmc.season8.listeners.EntityDamageByHoeListener;
-import net.duckycraftmc.season8.listeners.PlayerDamageByPlayerListener;
+import net.duckycraftmc.season8.listeners.EntityDamageByEntityListener;
 import net.duckycraftmc.season8.listeners.PlayerJoinQuitListener;
 import net.duckycraftmc.season8.runnables.CombatTagClock;
 import org.bukkit.entity.Player;
@@ -21,9 +20,8 @@ public final class Duckycraft extends JavaPlugin {
     public void onEnable() {
         long bootTime = System.currentTimeMillis();
 
-        getServer().getPluginManager().registerEvents(new PlayerDamageByPlayerListener(this), this);
+        getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinQuitListener(this), this);
-        getServer().getPluginManager().registerEvents(new EntityDamageByHoeListener(this), this);
 
         getServer().getScheduler().runTaskTimer(this, new CombatTagClock(this), 0, 1);
 
