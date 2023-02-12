@@ -23,11 +23,14 @@ public class PlayerDamageByPlayerListener implements Listener {
         if (!(e.getDamager() instanceof Player)) return;
         if (!(e.getEntity() instanceof Player)) return;
 
-        final Player player = (Player) e.getEntity();
-        final Player damager = (Player) e.getDamager();
+        Player player = (Player) e.getEntity();
+        Player damager = (Player) e.getDamager();
 
-        plugin.getCombatTagMap().put(player, true);
-        plugin.getCombatTagMap().put(damager, true);
+        plugin.getCombatTaggedPlayers().add(player);
+        plugin.getCombatTaggedPlayers().add(damager);
+
+        plugin.getPlayersLastInCombatTime().put(player, System.currentTimeMillis());
+        plugin.getPlayersLastInCombatTime().put(damager, System.currentTimeMillis());
 
         player.sendMessage(ChatMessageType.ACTION_BAR,
                 new TextComponent(ChatColor.RED + "You are now in combat. DO NOT DISCONNECT"));

@@ -1,6 +1,7 @@
 package net.duckycraftmc.season8.listeners;
 
 import net.duckycraftmc.season8.Duckycraft;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -20,6 +21,9 @@ public class PlayerJoinQuitListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
+        Player player = e.getPlayer();
+        if (plugin.getCombatTaggedPlayers().contains(player))
+            player.setHealth(0);
     }
 
 }
