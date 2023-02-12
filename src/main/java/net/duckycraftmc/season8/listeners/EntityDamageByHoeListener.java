@@ -24,23 +24,23 @@ public class EntityDamageByHoeListener implements Listener {
         Player player = (Player) e.getDamager();
         Entity damagedEntity = e.getEntity();
         ItemStack weapon = player.getInventory().getItemInMainHand();
-        if (weapon.equals(WOODEN_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(1.5));
+        if (weapon.getType().equals(WOODEN_HOE)) {
+            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-0.75));
         }
-        if (weapon.equals(STONE_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(2));
+        if (weapon.getType().equals(STONE_HOE)) {
+            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-0.9));
         }
-        if (weapon.equals(IRON_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(2.5));
+        if (weapon.getType().equals(IRON_HOE)) {
+            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-1));
         }
-        if (weapon.equals(GOLDEN_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(3));
+        if (weapon.getType().equals(GOLDEN_HOE)) {
+            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-1.1));
         }
-        if (weapon.equals(DIAMOND_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(3.5));
+        if (weapon.getType().equals(DIAMOND_HOE)) {
+            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-1.2));
         }
-        if (weapon.equals(NETHERITE_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(5));
+        if (weapon.getType().equals(NETHERITE_HOE)) {
+            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-2));
         }
     }
 
