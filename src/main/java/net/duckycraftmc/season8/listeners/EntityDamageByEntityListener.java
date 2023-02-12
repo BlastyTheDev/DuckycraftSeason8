@@ -11,9 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import static org.bukkit.Material.*;
-import static org.bukkit.Material.NETHERITE_HOE;
-
 @SuppressWarnings("deprecation")
 public class EntityDamageByEntityListener implements Listener {
 
@@ -26,32 +23,39 @@ public class EntityDamageByEntityListener implements Listener {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
         if (!(e.getDamager() instanceof Player)) return;
-        Player player = (Player) e.getEntity();
+
+        Player damager = (Player) e.getDamager();
 
         Entity damagedEntity = e.getEntity();
-        ItemStack weapon = player.getInventory().getItemInMainHand();
-        if (weapon.getType().equals(WOODEN_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-0.75));
-        }
-        if (weapon.getType().equals(STONE_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-0.9));
-        }
-        if (weapon.getType().equals(IRON_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-1));
-        }
-        if (weapon.getType().equals(GOLDEN_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-1.1));
-        }
-        if (weapon.getType().equals(DIAMOND_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-1.2));
-        }
-        if (weapon.getType().equals(NETHERITE_HOE)) {
-            damagedEntity.setVelocity(player.getLocation().getDirection().setY(0).normalize().multiply(-2));
+        ItemStack weapon = damager.getInventory().getItemInMainHand();
+
+        switch (weapon.getType()) {
+            case WOODEN_HOE:
+                damagedEntity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(-0.75));
+            case STONE_HOE:
+                damagedEntity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(-0.9));
+            case IRON_HOE:
+                damagedEntity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(-1));
+            case GOLDEN_HOE:
+                damagedEntity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(-1.1));
+            case DIAMOND_HOE:
+                damagedEntity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(-1.2));
+            case NETHERITE_HOE:
+                damagedEntity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(-2));
         }
 
         if (!(e.getEntity() instanceof Player)) return;
 
-        Player damager = (Player) e.getDamager();
+        Player player = (Player) e.getEntity();
+
+        switch (weapon.getType()) {
+            case WOODEN_SHOVEL:
+            case STONE_SHOVEL:
+            case IRON_SHOVEL:
+            case GOLDEN_SHOVEL:
+            case DIAMOND_SHOVEL:
+            case NETHERITE_SHOVEL:
+        }
 
         plugin.getCombatTaggedPlayers().add(player);
         plugin.getCombatTaggedPlayers().add(damager);
