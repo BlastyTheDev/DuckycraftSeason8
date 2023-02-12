@@ -25,7 +25,7 @@ public final class Duckycraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new EntityDamageByHoeListener(this), this);
 
-        getServer().getScheduler().runTaskTimer(this, new CombatTagClock(this), 1, 1);
+        getServer().getScheduler().runTaskTimer(this, new CombatTagClock(this), 0, 1);
 
         getLogger().info("Took " + (System.currentTimeMillis() - bootTime) + "ms to start Duckycraft Season 8.");
     }
