@@ -41,6 +41,8 @@ public class TpaAcceptCommand implements CommandExecutor {
             int i = 0;
             @Override
             public void run() {
+                if (!plugin.getTeleportingPlayers().contains(requester))
+                    return;
                 if (i == plugin.getConfig().getInt("tp-delay")) {
                     requester.teleport(player);
                     player.spawnParticle(Particle.CLOUD, player.getLocation(), 20);
