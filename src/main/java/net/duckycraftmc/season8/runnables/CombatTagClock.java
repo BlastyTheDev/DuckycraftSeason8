@@ -19,6 +19,8 @@ public class CombatTagClock implements Runnable {
     @Override
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
+            if (plugin.getPlayersLastInCombatTime().get(player) == null)
+                return;
             if (plugin.getPlayersLastInCombatTime().get(player) < (System.currentTimeMillis() - 60000)) {
                 plugin.getCombatTaggedPlayers().remove(player);
                 player.sendMessage(ChatMessageType.ACTION_BAR,

@@ -16,6 +16,9 @@ public final class Duckycraft extends JavaPlugin {
     private final List<Player> comabatTaggedPlayers = new ArrayList<>();
     private final HashMap<Player, Long> playersLastInCombatTime = new HashMap<>();
 
+    private final HashMap<Player, Player> tpaMap = new HashMap<>();
+    private final List<Player> teleportingPlayers = new ArrayList<>();
+
     @Override
     public void onEnable() {
         long bootTime = System.currentTimeMillis();
@@ -38,6 +41,14 @@ public final class Duckycraft extends JavaPlugin {
 
     public HashMap<Player, Long> getPlayersLastInCombatTime() {
         return playersLastInCombatTime;
+    }
+
+    public HashMap<Player, Player> getTpaMap() {
+        return tpaMap;
+    }
+
+    public List<Player> getTeleportingPlayers() {
+        return teleportingPlayers;
     }
 
 }
