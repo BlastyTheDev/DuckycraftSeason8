@@ -1,0 +1,4 @@
+# boolean
+tpa-enabled: false
+# int (seconds)
+tp-delay: 5

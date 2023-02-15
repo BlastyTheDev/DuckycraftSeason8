@@ -3,3 +3,10 @@ version: ${project.version}
 main: net.duckycraftmc.season8.Duckycraft
 api-version: 1.19
 authors: [ Blasty ]
+commands:
+  tpa:
+    description: Send a teleport request to a player
+  tpaccept:
+    description: Accept an incoming teleport request
+  tpdeny:
+    description: Reject an incoming teleport request
