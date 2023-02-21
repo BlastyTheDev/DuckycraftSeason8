@@ -20,6 +20,10 @@ public class TpaRequestCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (!plugin.getConfig().getBoolean("tpa-enabled")) {
+            sender.sendMessage(ChatColor.RED + "Duckycraft Tpa is disabled.");
+            return true;
+        }
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "You must be a player to use this command.");
             return true;

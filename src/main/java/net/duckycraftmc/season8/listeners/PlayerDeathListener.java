@@ -19,7 +19,7 @@ public class PlayerDeathListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent e) {
         Player player = e.getPlayer();
         if (plugin.getCombatTaggedPlayers().contains(player)) {
-            e.setDeathMessage(player.getName() + " really thought they could combat log without consequence.");
+            e.setDeathMessage(player.getName() + " thought they could combat log without consequence.");
             plugin.getCombatTaggedPlayers().remove(player);
         }
     }

@@ -1,5 +1,6 @@
 package net.duckycraftmc.season8;
 
+import net.duckycraftmc.season8.commands.tpa.BackCommand;
 import net.duckycraftmc.season8.commands.tpa.TpaAcceptCommand;
 import net.duckycraftmc.season8.commands.tpa.TpaDenyCommand;
 import net.duckycraftmc.season8.commands.tpa.TpaRequestCommand;
@@ -33,11 +34,10 @@ public final class Duckycraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
 
         // Tpa
-        if (getConfig().getBoolean("tpa-enabled")) {
-            getServer().getPluginCommand("tpa").setExecutor(new TpaRequestCommand(this));
-            getServer().getPluginCommand("tpaccept").setExecutor(new TpaAcceptCommand(this));
-            getServer().getPluginCommand("tpdeny").setExecutor(new TpaDenyCommand(this));
-        }
+        getServer().getPluginCommand("tpa").setExecutor(new TpaRequestCommand(this));
+        getServer().getPluginCommand("tpaccept").setExecutor(new TpaAcceptCommand(this));
+        getServer().getPluginCommand("tpdeny").setExecutor(new TpaDenyCommand(this));
+        getServer().getPluginCommand("back").setExecutor(new BackCommand(this));
 
         getServer().getScheduler().runTaskTimer(this, new CombatTagClock(this), 0, 1);
 

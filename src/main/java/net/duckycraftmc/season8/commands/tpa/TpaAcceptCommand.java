@@ -20,6 +20,10 @@ public class TpaAcceptCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (!plugin.getConfig().getBoolean("tpa-enabled")) {
+            sender.sendMessage(ChatColor.RED + "Duckycraft Tpa is disabled.");
+            return true;
+        }
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "You must be a player to use this command.");
             return true;
@@ -42,10 +46,11 @@ public class TpaAcceptCommand implements CommandExecutor {
             @Override
             public void run() {
                 if (!plugin.getTeleportingPlayers().contains(requester))
-                    return;
+                    cancel();
                 if (i == plugin.getConfig().getInt("tp-delay")) {
                     requester.teleport(player);
                     player.spawnParticle(Particle.CLOUD, player.getLocation(), 20);
+                    plugin.getTeleportingPlayers().remove(player);
                 } else i++;
             }
         }.runTaskTimer(plugin, 0, 20);
