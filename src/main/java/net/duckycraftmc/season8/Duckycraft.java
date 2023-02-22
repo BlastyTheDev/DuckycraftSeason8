@@ -1,5 +1,6 @@
 package net.duckycraftmc.season8;
 
+import net.duckycraftmc.season8.commands.DuckycraftCommand;
 import net.duckycraftmc.season8.commands.tpa.BackCommand;
 import net.duckycraftmc.season8.commands.tpa.TpaAcceptCommand;
 import net.duckycraftmc.season8.commands.tpa.TpaDenyCommand;
@@ -32,6 +33,8 @@ public final class Duckycraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
+
+        getServer().getPluginCommand("duckycraft").setExecutor(new DuckycraftCommand(this));
 
         // Tpa
         getServer().getPluginCommand("tpa").setExecutor(new TpaRequestCommand(this));
